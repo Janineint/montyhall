@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monty Hall Simulation</title>
+</head>
+<body>
+    <h1>Monty Hall Simulation</h1>
+    <script>
+        var switchCorrect = 0;
+        var stayCorrect = 0;
+
+        for (var i = 0; i < 10000; i++) {
+            var carDoor = Math.ceil(Math.random() * 3);
+            document.write("<p>Car is behind door " + carDoor + "</p>");
+
+            var playerChoice = Math.ceil(Math.random() * 3);
+            document.write("<p>Player chose door " + playerChoice + "</p>");
+
+            var removedDoor;
+            do {
+                removedDoor = Math.ceil(Math.random() * 3);
+            } while (removedDoor === carDoor || removedDoor === playerChoice);
+            document.write("<p>Host removed door " + removedDoor + "</p>");
+
+            if (playerChoice === carDoor) {
+                stayCorrect++;
+                document.write("<p style='color:red;'>Staying was the right choice</p>");
+            } else {
+                switchCorrect++;
+                document.write("<p style='color:blue;'>Switching was the right choice</p>");
+            }
+        }
+
+        document.write("<h2 style='color:red;'>Staying was correct " + stayCorrect + " times</h2>");
+        document.write("<h2 style='color:blue;'>Switching was correct " + switchCorrect + " times</h2>");
+
+        var switchPercentage = Math.round((switchCorrect / 10000) * 10000) / 100;
+        document.write("<h1>Switching was correct " + switchPercentage + "% of the time</h1>");
+    </script>
+</body>
+</html>
